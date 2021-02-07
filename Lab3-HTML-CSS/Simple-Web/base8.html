@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base8</title>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,500,100' rel='stylesheet' type='text/css'>
+
+    <link href="index.css" type="text/css" rel="stylesheet">
+</head>
+</head>
+<body>
+    <div class="nav">
+        <div>
+
+            <ul>
+                <label>Number System Conversion</label>
+                
+                <a href = "index.html"><li style="margin-left: 45%">Home</li></a>
+                <a href = "base2.html"><li>Binary</li></a>
+                <a href = "base8.html"><li>Octal</li></a>
+                <a href = "base16.html"><li>Hexadecimal</li></a>
+                <a href = "about.html"><li>About</li></a>
+            
+            </ul>
+        </div>
+    </div>
+
+    <div>
+        <div class="container">
+            <h1>เลขฐานแปด</h1>
+            <p> เลขฐานแปด มีความสัมพันธ์กับเลขฐานสอง คือ เลขฐานสองจำนวน 3 หลัก แทนด้วยเลข ฐานแปด 1 หลัก ดังนั้นเราจึงสามารถเขียนเลขฐานสอง 6 บิท แทนด้วยเลขฐานแปด 2 บิท การใช้เลขฐานแปดแทนเลขฐานสองทำให้จำนวนบิทสั้นลง 
+            </p>
+        </div>
+    </div>
+
+    <div class="box">
+        <div class="title">
+        <p style="text-align: center;">แปลงเลขฐานสิบเป็นเลขฐานแปด</p>
+        </div>
+        <form action="#" onsubmit="return false">
+            <div class="form">
+                <p>ใส่ค่าเลขฐานสิบ <input  onkeyup="decimal();" type="number" name="deci" id="deci" style="margin-left: 5%;">
+                <p>เลขฐานแปด <label id="decioc" style="margin-left:11%;"></label> </p>
+            </div>
+        
+        </form>
+        <div class="title">
+            <p style="text-align: center;">แปลงเลขฐานสิบเป็นเลขฐานแปด</p>
+            </div>
+            <form action="#" onsubmit="return false">
+                <div class="form">
+                    <p>ใส่ค่าเลขฐานแปด <input onkeyup="octal();"type="number" name="oc" id="oc" style="margin-left: 3%;"> 
+                    <p>เลขฐานสิบ <label id="ocdeci" style="margin-left:13%;" ></label></p> 
+                </div> 
+            </form>
+    </div>
+
+    <script>
+        
+        function decimal() {
+             d = document.getElementById("deci").value;
+            console.log(d);
+             b = parseInt(d, 10).toString(8);
+            console.log(b);
+            if (b !== 'NaN')
+                document.getElementById("decioc").innerHTML = b;
+            else
+                document.getElementById("decioc").innerHTML = " ";
+            
+        }
+
+        function octal() {
+             b = document.getElementById("oc").value;
+            console.log(b);
+             d = parseInt(b, 8).toString(10);
+            console.log(d);
+           
+            if (d !== 'NaN')
+                document.getElementById("ocdeci").innerHTML = d;
+            else
+                document.getElementById("ocdeci").innerHTML = " ";
+        }
+
+    </script>
+
+</body>
+</html>

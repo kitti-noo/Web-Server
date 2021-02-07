@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base2</title>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,500,100' rel='stylesheet' type='text/css'>
+
+    <link href="index.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="nav">
+        <div>
+
+            <ul>
+                <label>Number System Conversion</label>
+                
+                <a href = "index.html"><li style="margin-left: 45%">Home</li></a>
+                <a href = "base2.html"><li>Binary</li></a>
+                <a href = "base8.html"><li>Octal</li></a>
+                <a href = "base16.html"><li>Hexadecimal</li></a>
+                <a href = "about.html"><li>About</li></a>
+            
+            </ul>
+        </div>
+    </div>
+
+    <div>
+        <div class="container">
+            <h1>เลขฐานสอง</h1>
+            <p>คือตัวเลขที่มีค่าไม่ซ้ำกันสองหลัก ( 0 และ 1) เป็นเลขฐานเดียวที่เข้ากันได้กับ Hardware ของเครื่องคอมพิวเตอร์ได้โดยตรง เพราะการใช้เลขฐานอื่น จะสร้างความยุ่งยากให้กับเครื่องคอมพิวเตอร์อย่างมาก เช่น เลขฐานสิบมีตัวเลขที่เป็นสถานะที่ต่างกันถึง 10 ตัว ในขณะที่ระบบไฟฟ้ามีเพียง 2 สถานะ ซึ่งในช่วงเวลาหนึ่งๆมีเพียงสถานะเดียวเท่านั้น แต่ละหลักของเลขฐานสอง เรียกว่า Binary Digit (BIT)
+            </p>
+        </div>
+    </div>
+
+    <div class="box">
+        <div class="title">
+        <p style="text-align: center;">แปลงเลขฐานสิบเป็นเลขฐานสอง</p>
+        </div>
+        <form action="#" onsubmit="return false">
+            <div class="form">
+                <p>ใส่ค่าเลขฐานสิบ <input onkeyup="decimal();" type="number" name="deci" id="deci" style="margin-left: 5%;"> 
+                <p>เลขฐานสอง <label id="decibin" style="margin-left:11%;"></label> </p>
+            </div>
+        
+        </form>
+        <div class="title">
+            <p style="text-align: center;">แปลงเลขฐานสองเป็นเลขฐานสิบ</p>
+            </div>
+            <form action="#" onsubmit="return false">
+                <div class="form">
+                    <p>ใส่ค่าเลขฐานสอง <input onkeyup="binary();" type="number" name="bin" id="bin" style="margin-left: 3%;"> 
+                    <p>เลขฐานสิบ <label id="bindeci" style="margin-left:13%;" ></label></p> 
+                </div> 
+            </form>
+    </div>
+
+    <script>
+        
+        function decimal() {
+             d = document.getElementById("deci").value;
+            console.log(d);
+             b = parseInt(d, 10).toString(2);
+            console.log(b);
+
+            if (b !== 'NaN')
+                document.getElementById("decibin").innerHTML = b;
+            else
+                document.getElementById("decibin").innerHTML = " ";
+        }
+
+        function binary() {
+             b = document.getElementById("bin").value;
+            
+            if (b<=1)
+            console.log(b);
+             d = parseInt(b, 2).toString(10);
+            console.log(d);
+
+            if (d !== 'NaN')
+                document.getElementById("bindeci").innerHTML = d;
+            else
+                document.getElementById("bindeci").innerHTML = " ";
+            
+        }
+
+    </script>
+</body>
+
+</html>

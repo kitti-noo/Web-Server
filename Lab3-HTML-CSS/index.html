@@ -23,6 +23,8 @@
             <div class="signin">
                 <button onclick="signin();">Sign-in</button>
             </div>
+            <!-- <p id = "message" style="text-align: center;"></p> -->
+            
         </form>
     </div>
     <script>
@@ -30,13 +32,17 @@
         function signin() {
             var u = document.getElementById("username").value;
             var p = document.getElementById("password").value;
+            
             console.log(u);
             console.log(p);
             if (u === 'foo' && p === 'bar') {
                 alert('Correct')
+                //document.getElementById("message").innerHTML = "Correct";
+                
             }
             else {
-                alert('Incorrect user/passworde')
+                alert('Incorrect user/password')
+                //document.getElementById("message").innerHTML = "Incorrect user/password";
             }
         }
 
