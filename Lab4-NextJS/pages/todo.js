@@ -1,11 +1,24 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import styles from '../styles/Todo.module.css'
 const Todo = () => {
 
-    const [tasks, setTasks] = useState([
-        { id: 1, name: 'Reading a book' },
-        { id: 2, name: 'Sleep at night' }
-    ])
+    // const [tasks, setTasks] = useState([
+    //     { id: 1, name: 'Reading a book' },
+    //     { id: 2, name: 'Sleep at night' }
+    // ])
+
+
+    const [tasks, setTasks] = useState([])
+
+    useEffect(async () => {
+        let ts = await getTasks();
+        console.log(ts)
+        setTasks(ts)
+    }, [])
+
+
+    const [age, setAge] = useState('')
+
 
     const [name, setName] = useState('')
 
@@ -19,17 +32,24 @@ const Todo = () => {
         // })
         return tasks.map((task, index) =>
         (<li key={index} className={styles.listItem}>
-            {index+1 + ') '} 
+            {index + 1 + ') '}
             {(+idEdit !== +task.id) ? task.name :
                 (<input type="text" className={styles.text}
 
                     value={name}
                     onChange={(e) => setName(e.target.value)}>
 
-                </input>)}
+                </input >)}
+            {(+idEdit !== +task.id) ? ' age : ' +task.age :
+                (<input type="text" className={styles.text}
 
+                    value={age}
+                    onChange={(e) => setAge(e.target.value)}>
+
+                </input >)}                           
+            
             <div className={styles.buttonContainer}>
-                <button onClick={() => editTask(task.id, task.name)} className={`${styles.button} ${styles.btnEdit}`}>Edit</button>
+                <button onClick={() => editTask(task.id, task.name, task.age)} className={`${styles.button} ${styles.btnEdit}`}>Edit</button>
                 <button onClick={() => deleteTask(task.id)} className={`${styles.button} ${styles.btnDelete}`}
                 >Delete</button>
             </div>
@@ -41,10 +61,14 @@ const Todo = () => {
         setidEdit(id)
         let t = tasks.find((task) => +task.id === +id)
         setName(t.name)
+        setAge(t.age)
         if (+idEdit === +id) { //Press Edit again
             let newTasks = tasks.map((task, index) => {
-                if (+task.id === +id)
+                if (+task.id === +id){
                     tasks[index].name = name
+                    tasks[index].age = age
+                }
+                   
                 return task
             })
             setTasks(newTasks)
@@ -60,17 +84,17 @@ const Todo = () => {
 
     const addTask = () => {
         console.log('Add!!');
-        if (tasks.length > 9 ){
+        if (tasks.length > 9) {
             alert(' Task name ได้ไม่เกิน 10 Tasks')
         }
-        else if (name.trim() !== ''){
-        
-                const id = [tasks.length - 1] < 0 ? 1 : tasks[tasks.length - 1].id + 1;
-            setTasks([...tasks, { id: id, name: name }])
-        
+        else if (name.trim() !== '') {
+
+            const id = [tasks.length - 1] < 0 ? 1 : tasks[tasks.length - 1].id + 1;
+            setTasks([...tasks, { id: id, name: name,age: age }])
+
         }
-            
-       
+
+
         console.log('Tasks:', tasks);
 
     }
@@ -80,6 +104,7 @@ const Todo = () => {
             <div className="addContainer">
 
                 <input type="text" onChange={(e) => setName(e.target.value)} ></input>
+                <input type="number" onChange={(e) => setAge(e.target.value)} ></input>
                 <button onClick={addTask} className={`${styles.button} ${styles.btnAdd}`}
                 >Add</button>
             </div>
@@ -90,5 +115,14 @@ const Todo = () => {
 
     )
 }
+const getTasks = async () => {
+    const res = await fetch('http://localhost:8000/')
+    const json = await res.json()
+    console.log(json)
+    return json;
+}
+
+
+
 
 export default Todo
